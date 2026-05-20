@@ -140,7 +140,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Visi section */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
           <div className="text-center mb-4">
             <h2
               className="font-[family-name:var(--font-montserrat)] font-bold tracking-tight inline-flex items-center gap-2"
@@ -161,7 +161,7 @@ export default function AboutUsPage() {
         </div>
 
         {/* Misi section */}
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
           <div className="text-center mb-8">
             <h2
               className="font-[family-name:var(--font-montserrat)] font-bold tracking-tight inline-flex items-center gap-2"

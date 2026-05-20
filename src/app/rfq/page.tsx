@@ -106,10 +106,17 @@ export default function RfqPage() {
   };
 
   return (
-    <main className="min-h-screen pt-28 md:pt-32">
+    <main
+      className="min-h-screen w-full"
+      style={{
+        backgroundColor: C.bg,
+        // Ensures bg covers from very top (behind fixed header) to bottom
+        paddingTop: 0,
+        marginTop: 0,
+      }}
+    >
       <section
-        className="relative w-full py-16 md:py-20 lg:py-24"
-        style={{ backgroundColor: C.bg }}
+        className="relative w-full pt-44 md:pt-48 pb-16 md:pb-20 lg:pb-24"
       >
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* Title */}

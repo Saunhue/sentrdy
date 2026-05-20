@@ -653,8 +653,6 @@ export function SiteHeader() {
           maxHeight: subHeaderHidden ? '0px' : '36px',
           opacity: subHeaderHidden ? 0 : 1,
           backgroundColor: scrolled
-            ? '#173422'
-            : 'rgba(23, 52, 34, 0.35)',
             ? subBgScrolled
             : subBgDefault,
         }}
@@ -667,7 +665,6 @@ export function SiteHeader() {
         className="w-full transition-all duration-500"
         style={{
           backgroundColor: scrolled
-            ? '#1f422e'
             ? headerBgSrolled
             : 'rgba(31, 66, 46, 0)',
           boxShadow: scrolled

@@ -616,6 +616,13 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [subHeaderHidden, setSubHeaderHidden] = useState(false);
 
+  // On /about and /rfq, header is semi-transparent (scrolled = 0.85 alpha, top = 0.57 alpha)
+  // Previously: scrolled=0.78, top=0.13 → now raised by ~0.22 each for more visible header
+  const isTransparentPage = pathname === '/about' || pathname === '/rfq';
+  const scrolledSubBg  = isTransparentPage ? 'rgba(23, 52, 34, 0.85)' : '#173422';
+  const scrolledNavBg  = isTransparentPage ? 'rgba(31, 66, 46, 0.85)' : '#1f422e';
+  const topSubBg       = isTransparentPage ? 'rgba(23, 52, 34, 0.57)' : 'rgba(23, 52, 34, 0.35)';
+  
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;

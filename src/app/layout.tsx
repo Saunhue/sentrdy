@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Montserrat, Titillium_Web, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import dynamic from 'next/dynamic';
-
-const SiteHeader = dynamic(() => import('@/components/layout/site-header').then(mod => mod.SiteHeader), {
-  ssr: false, // Ini kuncinya! Mematikan Server-Side Rendering untuk Header
-});
+import { HeaderWrapper } from "@/components/layout/header-wrapper";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -60,7 +56,7 @@ export default function RootLayout({
       <body
         className={`${jakarta.variable} ${montserrat.variable} ${titillium.variable} ${interFont.variable} font-sans antialiased`}
       >
-        <SiteHeader />
+        <HeaderWrapper />
         <main>{children}</main>
         <Toaster />
       </body>

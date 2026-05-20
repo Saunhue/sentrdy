@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   MapPin,
   Clock,
@@ -616,10 +615,6 @@ function Logo() {
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [subHeaderHidden, setSubHeaderHidden] = useState(false);
-  const pathname = usePathname();
-
-  // Inner pages: RFQ & About — increase transparency by 22%
-  const isInnerPage = pathname === '/rfq' || pathname === '/about';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -631,18 +626,6 @@ export function SiteHeader() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Compute background colors based on page type
-  // Inner pages: opacity * 0.78 (22% more transparent)
-  const subBgScrolled = isInnerPage
-    ? 'rgba(23, 52, 34, 0.78)'
-    : '#173422';
-  const subBgDefault = isInnerPage
-    ? 'rgba(23, 52, 34, 0.27)'
-    : 'rgba(23, 52, 34, 0.35)';
-  const headerBgScrolled = isInnerPage
-    ? 'rgba(31, 66, 46, 0.78)'
-    : '#1f422e';
   
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full">
@@ -653,8 +636,8 @@ export function SiteHeader() {
           maxHeight: subHeaderHidden ? '0px' : '36px',
           opacity: subHeaderHidden ? 0 : 1,
           backgroundColor: scrolled
-            ? subBgScrolled
-            : subBgDefault,
+            ? '#173422'
+            : 'rgba(23, 52, 34, 0.35)',
         }}
       >
         <SubHeader scrolled={scrolled} />
@@ -665,7 +648,7 @@ export function SiteHeader() {
         className="w-full transition-all duration-500"
         style={{
           backgroundColor: scrolled
-            ? headerBgSrolled
+            ? '#1f422e'
             : 'rgba(31, 66, 46, 0)',
           boxShadow: scrolled
             ? '0 2px 16px rgba(0,0,0,0.15)'

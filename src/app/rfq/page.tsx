@@ -106,10 +106,10 @@ export default function RfqPage() {
   };
 
   return (
-    <main className="min-h-screen pt-28 md:pt-32">
+      <main className="min-h-screen" style={{ backgroundColor: C.bg }}>
+      <div className="pt-28 md:pt-32">
       <section
         className="relative w-full py-16 md:py-20 lg:py-24"
-        style={{ backgroundColor: C.bg }}
       >
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {/* Title */}
@@ -304,6 +304,7 @@ export default function RfqPage() {
           </form>
         </div>
       </section>
+      </div>
     </main>
   );
 }

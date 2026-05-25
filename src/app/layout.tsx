@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Montserrat, Titillium_Web, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { HeaderWrapper } from "@/components/layout/header-wrapper";
+import { SiteHeader } from "@/components/layout/site-header";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -56,7 +56,7 @@ export default function RootLayout({
       <body
         className={`${jakarta.variable} ${montserrat.variable} ${titillium.variable} ${interFont.variable} font-sans antialiased`}
       >
-        <HeaderWrapper />
+        <SiteHeader />
         <main>{children}</main>
         <Toaster />
       </body>

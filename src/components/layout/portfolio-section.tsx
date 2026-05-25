@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -141,19 +142,15 @@ export function PortfolioSection() {
             ))}
           </div>
 
-          {/* Semua Project — right-aligned with arrow */}
-          <FilterButton
-            active={activeFilter === "Semua"}
-            onClick={() => {
-              setActiveFilter("Semua");
-              /* TODO: navigate to project page — wait for user instruction */
-            }}
-          >
-            <span className="flex items-center gap-1">
-              Semua Project
-              <ChevronRight width={14} height={14} style={{ color: "inherit" }} />
-            </span>
-          </FilterButton>
+          {/* Semua Project — right-aligned with arrow → navigate to /projects */}
+          <Link href="/projects">
+            <FilterButton active={activeFilter === "Semua"} onClick={() => setActiveFilter("Semua")}>
+              <span className="flex items-center gap-1">
+                Semua Project
+                <ChevronRight width={14} height={14} style={{ color: "inherit" }} />
+              </span>
+            </FilterButton>
+          </Link>
         </div>
       </div>
 

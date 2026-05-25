@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
@@ -616,14 +616,11 @@ function Logo() {
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [subHeaderHidden, setSubHeaderHidden] = useState(false);
+  const pathname = usePathname();
 
-  // On /about and /rfq, header is semi-transparent (scrolled = 0.85 alpha, top = 0.57 alpha)
-  // Previously: scrolled=0.78, top=0.13 → now raised by ~0.22 each for more visible header
-  const isTransparentPage = pathname === '/about' || pathname === '/rfq';
-  const scrolledSubBg  = isTransparentPage ? 'rgba(23, 52, 34, 0.85)' : '#173422';
-  const scrolledNavBg  = isTransparentPage ? 'rgba(31, 66, 46, 0.85)' : '#1f422e';
-  const topSubBg       = isTransparentPage ? 'rgba(23, 52, 34, 0.57)' : 'rgba(23, 52, 34, 0.35)';
-  
+  // Inner pages: RFQ & About — increase transparency
+  const isInnerPage = pathname === '/rfq' || pathname === '/about';
+
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
@@ -634,7 +631,19 @@ export function SiteHeader() {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
+  // Compute background colors based on page type
+  // Sub-header: same as original for all pages
+  // Main header inner pages: α=0.91 gives minimum 5.5:1 contrast for #f1f3f4 text
+  //   against both page backgrounds (#eceed6 and #d1e9e1)
+  //   scrolled: fully opaque (same as homepage)
+  const subBgScrolled = '#173422';
+  const subBgDefault = 'rgba(23, 52, 34, 0.35)';
+  const headerBgScrolled = '#1f422e';
+  const headerBgDefault = isInnerPage
+    ? 'rgba(31, 66, 46, 0.91)'
+    : 'rgba(31, 66, 46, 0)';
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full">
       {/* Sub‑header — slides up and disappears on scroll */}
@@ -644,8 +653,8 @@ export function SiteHeader() {
           maxHeight: subHeaderHidden ? '0px' : '36px',
           opacity: subHeaderHidden ? 0 : 1,
           backgroundColor: scrolled
-            ? '#173422'
-            : 'rgba(23, 52, 34, 0.35)',
+            ? subBgScrolled
+            : subBgDefault,
         }}
       >
         <SubHeader scrolled={scrolled} />
@@ -656,8 +665,8 @@ export function SiteHeader() {
         className="w-full transition-all duration-500"
         style={{
           backgroundColor: scrolled
-            ? '#1f422e'
-            : 'rgba(31, 66, 46, 0)',
+            ? headerBgScrolled
+            : headerBgDefault,
           boxShadow: scrolled
             ? '0 2px 16px rgba(0,0,0,0.15)'
             : 'none',
